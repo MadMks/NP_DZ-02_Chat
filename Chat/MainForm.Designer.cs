@@ -28,53 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.textBoxChat = new System.Windows.Forms.TextBox();
+            this.listBoxUsers = new System.Windows.Forms.ListBox();
+            this.textBoxMessage = new System.Windows.Forms.TextBox();
+            this.buttonSend = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBoxChat
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 13);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(286, 72);
-            this.textBox1.TabIndex = 0;
+            this.textBoxChat.Location = new System.Drawing.Point(13, 13);
+            this.textBoxChat.Multiline = true;
+            this.textBoxChat.Name = "textBoxChat";
+            this.textBoxChat.Size = new System.Drawing.Size(286, 72);
+            this.textBoxChat.TabIndex = 0;
             // 
-            // listBox1
+            // listBoxUsers
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(315, 13);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(123, 108);
-            this.listBox1.TabIndex = 1;
+            this.listBoxUsers.FormattingEnabled = true;
+            this.listBoxUsers.Location = new System.Drawing.Point(315, 13);
+            this.listBoxUsers.Name = "listBoxUsers";
+            this.listBoxUsers.Size = new System.Drawing.Size(123, 108);
+            this.listBoxUsers.TabIndex = 1;
             // 
-            // textBox2
+            // textBoxMessage
             // 
-            this.textBox2.Location = new System.Drawing.Point(13, 100);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(204, 21);
-            this.textBox2.TabIndex = 2;
+            this.textBoxMessage.Location = new System.Drawing.Point(13, 100);
+            this.textBoxMessage.Name = "textBoxMessage";
+            this.textBoxMessage.Size = new System.Drawing.Size(204, 21);
+            this.textBoxMessage.TabIndex = 2;
             // 
-            // button1
+            // buttonSend
             // 
-            this.button1.Location = new System.Drawing.Point(224, 100);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonSend.Location = new System.Drawing.Point(224, 100);
+            this.buttonSend.Name = "buttonSend";
+            this.buttonSend.Size = new System.Drawing.Size(75, 23);
+            this.buttonSend.TabIndex = 3;
+            this.buttonSend.Text = "Отправить";
+            this.buttonSend.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 133);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.buttonSend);
+            this.Controls.Add(this.textBoxMessage);
+            this.Controls.Add(this.listBoxUsers);
+            this.Controls.Add(this.textBoxChat);
             this.Name = "MainForm";
             this.Text = "Чат";
             this.ResumeLayout(false);
@@ -84,10 +84,10 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBoxChat;
+        private System.Windows.Forms.ListBox listBoxUsers;
+        private System.Windows.Forms.TextBox textBoxMessage;
+        private System.Windows.Forms.Button buttonSend;
     }
 }
 
