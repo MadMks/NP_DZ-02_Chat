@@ -11,7 +11,8 @@ namespace Chat
 {
     class Chat
     {
-        private const int port = 4000;
+        private const int localPort = 4000;
+        private const int remotePort = 4000;
 
         private Socket socket = null;
 
@@ -43,13 +44,34 @@ namespace Chat
         {
             try
             {
-                MessageBox.Show(GetLocalIpAddress());
-                //MessageBox.Show()
-
                 // Прослушиваем по адресу (наш локальный адрес).
-                //IPEndPoint localIp 
-                //    = new IPEndPoint(
-                //        IPAddress)
+                IPEndPoint localIp
+                    = new IPEndPoint(
+                        this.GetLocalIpAddress(),
+                        localPort);
+
+                socket.Bind(localIp);
+
+                while (true)
+                {
+                    // Получаем сообщение.
+                    StringBuilder builder = new StringBuilder();
+                    int bytes = 0;
+                    byte[] buffer = new byte[256];
+                    EndPoint remoteIp 
+                        = new IPEndPoint(IPAddress.Any, remotePort);
+
+                    do
+                    {
+                        bytes = socket.ReceiveFrom(buffer, ref remoteIp);
+                        builder.Append(
+                            Encoding.Unicode.GetString(buffer, 0, bytes)
+                            );
+
+                    } while (socket.Available > 0);
+
+                    // TODO вывод remoteIp чтоб знать от кого.
+                }
             }
             catch (Exception ex)
             {
@@ -61,7 +83,7 @@ namespace Chat
             }
         }
 
-        private string GetLocalIpAddress()
+        private IPAddress GetLocalIpAddress()
         {
             IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
 
@@ -69,7 +91,7 @@ namespace Chat
             {
                 if (ip.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    return ip.ToString();
+                    return ip;
                 }
             }
 
