@@ -45,14 +45,18 @@ namespace Chat
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            chat = new Chat(this.textBoxChat);
-            chat.Listening();
-
             // Down -> method registrationLogin
 
             // TODO: Спросить Логин
-            // "Ваш логин: "
+            //string login = 
             this.Text = "TODO: мой логин";
+
+            chat = new Chat();
+
+            chat.ChatMessages = this.textBoxChat;
+            //chat.Login = 
+
+            chat.Listening();
         }
 
 
