@@ -22,9 +22,23 @@ namespace Chat
             this.FormClosing += MainForm_FormClosing;
 
             this.buttonSend.Click += ButtonSend_Click;
+            this.textBoxMessage.KeyDown += TextBoxMessage_KeyDown;
+        }
+
+        private void TextBoxMessage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendingMessage();
+            }
         }
 
         private void ButtonSend_Click(object sender, EventArgs e)
+        {
+            SendingMessage();
+        }
+
+        private void SendingMessage()
         {
             if (this.IsThereAMessage())
             {
