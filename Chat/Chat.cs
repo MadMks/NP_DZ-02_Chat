@@ -48,14 +48,23 @@ namespace Chat
 
         internal void Send(string message)
         {
-            byte[] buffer = Encoding.Unicode.GetBytes(
+            try
+            {
+                byte[] buffer = Encoding.Unicode.GetBytes(
                 this.CreateCompleteMessage(message));
-            EndPoint remotePoint
-                = new IPEndPoint(
-                    IPAddress.Broadcast,
-                    remotePort);
+                EndPoint remotePoint
+                    = new IPEndPoint(
+                        IPAddress.Broadcast,
+                        remotePort);
 
-            this.socket.SendTo(buffer, remotePoint);
+                this.socket.SendTo(buffer, remotePoint);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+                this.Close();
+            }
         }
 
         internal void Listening()
@@ -93,9 +102,6 @@ namespace Chat
 
                     } while (socket.Available > 0);
 
-                    //string fullMessage
-                    //    = this.CreatingACompleteMessageLine(
-                    //        builder);
 
                     this.ChatMessages.Invoke(
                         new Action<string>(AddTextToChat),

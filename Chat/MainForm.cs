@@ -28,7 +28,6 @@ namespace Chat
         {
             if (this.IsThereAMessage())
             {
-                // TODO: отправить
                 chat.Send(this.textBoxMessage.Text);
             }
         }
