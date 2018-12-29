@@ -70,6 +70,8 @@ namespace Chat
 
                     } while (socket.Available > 0);
 
+                    // TODO: через Invoke добавить сообщение в окно чата.
+
                     // TODO вывод remoteIp чтоб знать от кого.
                 }
             }

@@ -20,9 +20,28 @@ namespace Chat
 
             this.Load += MainForm_Load;
             this.FormClosing += MainForm_FormClosing;
+
+            this.buttonSend.Click += ButtonSend_Click;
         }
 
-        
+        private void ButtonSend_Click(object sender, EventArgs e)
+        {
+            if (this.IsThereAMessage())
+            {
+                // TODO: отправить
+                MessageBox.Show("тест отправки");
+            }
+        }
+
+        private bool IsThereAMessage()
+        {
+            if (this.textBoxMessage.Text.Length > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
