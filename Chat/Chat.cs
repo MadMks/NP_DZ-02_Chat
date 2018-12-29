@@ -112,6 +112,15 @@ namespace Chat
                     //    MessageConversion(builder);
                     //}
 
+                    // Имя компа.
+                    //string remoteHost
+                    //    = Dns.GetHostEntry(
+                    //        (remoteIp as IPEndPoint).Address).HostName;
+
+                    //Console.WriteLine(
+                    //    remoteHost.Substring(0, remoteHost.IndexOf("."))
+                    //    );
+
                     this.ChatMessages.Invoke(
                         new Action<string>(AddTextToChat),
                         builder.ToString());
