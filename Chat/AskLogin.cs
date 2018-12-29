@@ -26,6 +26,8 @@ namespace Chat
 
         private void AskLogin_Load(object sender, EventArgs e)
         {
+            this.CenterToScreen();
+
             this.buttonSave.Click += ButtonSave_Click;
             this.textBoxLogin.KeyDown += TextBoxLogin_KeyDown;
         }

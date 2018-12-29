@@ -16,8 +16,6 @@ namespace Chat
 
         private Socket socket = null;
 
-        private IPAddress localIpAddress = null;
-
         public TextBox ChatMessages { get; set; }
         public string Login { get; set; }
         
@@ -34,8 +32,6 @@ namespace Chat
                     SocketOptionLevel.Socket,
                     SocketOptionName.Broadcast,
                     1);
-
-                localIpAddress = GetLocalIpAddress();
             }
             catch (Exception ex)
             {
@@ -66,8 +62,6 @@ namespace Chat
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Console.WriteLine("2 " + ex.Message);
-                //this.Close();
             }
         }
 
@@ -106,20 +100,6 @@ namespace Chat
 
                     } while (socket.Available > 0);
 
-                    // HACK под вопросом, нужно ли?
-                    //if (IsMessageFromThisAddress(remoteIp))
-                    //{
-                    //    MessageConversion(builder);
-                    //}
-
-                    // Имя компа.
-                    //string remoteHost
-                    //    = Dns.GetHostEntry(
-                    //        (remoteIp as IPEndPoint).Address).HostName;
-
-                    //Console.WriteLine(
-                    //    remoteHost.Substring(0, remoteHost.IndexOf("."))
-                    //    );
 
                     this.ChatMessages.Invoke(
                         new Action<string>(AddTextToChat),
@@ -129,36 +109,7 @@ namespace Chat
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Console.WriteLine("1 " + ex.Message);
             }
-            finally
-            {
-                //this.Close();
-            }
-        }
-
-        private void MessageConversion(StringBuilder builder)
-        {
-            //string message = builder.ToString();
-
-            //string temp = message.Substring(0, message.IndexOf(":"))
-            //        + " (Вы)"
-            //        + message.Substring(
-            //            message.IndexOf(":"),
-            //            message.Length - 1);
-
-            builder.Replace(":", " (Вы):");
-        }
-
-        private bool IsMessageFromThisAddress(EndPoint remoteIp)
-        {
-            if ((remoteIp as IPEndPoint).Address.ToString()
-                == localIpAddress.ToString())
-            {
-                return true;
-            }
-
-            return false;
         }
 
         private string CreateCompleteMessage(string message)

@@ -80,7 +80,6 @@ namespace Chat
         private void MainForm_Load(object sender, EventArgs e)
         {
             string login = "";
-            // Down -> method registrationLogin
 
             AskLogin askLogin = new AskLogin();
             if (askLogin.ShowDialog() == DialogResult.OK)
