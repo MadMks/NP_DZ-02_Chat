@@ -45,7 +45,7 @@ namespace Chat
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            chat = new Chat();
+            chat = new Chat(this.textBoxChat);
             chat.Listening();
 
             // Down -> method registrationLogin

@@ -16,6 +16,8 @@ namespace Chat
 
         private Socket socket = null;
 
+        public TextBox ChatMessages { get; set; }
+
         public Chat()
         {
             try
@@ -36,6 +38,11 @@ namespace Chat
             }
 
             // TODO закрыть сокет !!!
+        }
+
+        public Chat(TextBox textBoxChat) : this()
+        {
+            this.ChatMessages = textBoxChat;
         }
 
         internal void Send(string message)
@@ -85,7 +92,9 @@ namespace Chat
                     } while (socket.Available > 0);
 
                     // TODO: через Invoke добавить сообщение в окно чата.
-                    MessageBox.Show(builder.ToString());
+                    //this.ChatMessages.Text += builder.ToString();
+                    this.ChatMessages.Invoke(
+                        new Action<string>(AddTextToChat), builder.ToString());
                     // TODO вывод remoteIp чтоб знать от кого.
                 }
             }
@@ -97,6 +106,14 @@ namespace Chat
             {
                 this.Close();
             }
+        }
+
+        private void AddTextToChat(string newMessage)
+        {
+            this.ChatMessages.Text 
+                = this.ChatMessages.Text
+                + newMessage
+                + Environment.NewLine;
         }
 
         private IPAddress GetLocalIpAddress()
