@@ -36,9 +36,9 @@ namespace Chat
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
 
-            // TODO закрыть сокет !!!
+                this.Close();
+            }
         }
 
         public Chat(TextBox textBoxChat) : this()
