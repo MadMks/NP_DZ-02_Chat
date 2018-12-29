@@ -62,8 +62,8 @@ namespace Chat
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-
-                this.Close();
+                Console.WriteLine("2 " + ex.Message);
+                //this.Close();
             }
         }
 
@@ -111,10 +111,11 @@ namespace Chat
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Console.WriteLine("1 " + ex.Message);
             }
             finally
             {
-                this.Close();
+                //this.Close();
             }
         }
 

@@ -18,17 +18,31 @@ namespace Chat
         {
             InitializeComponent();
 
+            // TODO: метод "настройка текстбокса чата"
+            this.textBoxChat.ReadOnly = true;
+            this.textBoxChat.BackColor = Color.White;
+            this.textBoxChat.ScrollBars = ScrollBars.Both;
+
             this.Load += MainForm_Load;
             this.FormClosing += MainForm_FormClosing;
 
             this.buttonSend.Click += ButtonSend_Click;
             this.textBoxMessage.KeyDown += TextBoxMessage_KeyDown;
+            this.textBoxChat.TextChanged += TextBoxChat_TextChanged;
+        }
+
+        private void TextBoxChat_TextChanged(object sender, EventArgs e)
+        {
+            this.textBoxChat.SelectionStart = this.textBoxChat.Text.Length;
+            this.textBoxChat.ScrollToCaret();
         }
 
         private void TextBoxMessage_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
+                e.SuppressKeyPress = true;
+
                 SendingMessage();
             }
         }
@@ -43,6 +57,8 @@ namespace Chat
             if (this.IsThereAMessage())
             {
                 chat.Send(this.textBoxMessage.Text);
+
+                this.textBoxMessage.Clear();
             }
         }
 

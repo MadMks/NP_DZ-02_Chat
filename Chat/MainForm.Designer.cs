@@ -36,6 +36,7 @@
             // 
             // textBoxChat
             // 
+            this.textBoxChat.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxChat.Location = new System.Drawing.Point(13, 13);
             this.textBoxChat.Multiline = true;
             this.textBoxChat.Name = "textBoxChat";
