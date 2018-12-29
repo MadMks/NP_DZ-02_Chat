@@ -24,8 +24,11 @@ namespace Chat
                     AddressFamily.InterNetwork,
                     SocketType.Dgram,
                     ProtocolType.Udp);
-                
-                // TODO -> setSocketOption
+
+                socket.SetSocketOption(
+                    SocketOptionLevel.Socket,
+                    SocketOptionName.Broadcast,
+                    1);
             }
             catch (Exception ex)
             {
@@ -33,6 +36,17 @@ namespace Chat
             }
 
             // TODO закрыть сокет !!!
+        }
+
+        internal void Send(string message)
+        {
+            byte[] buffer = Encoding.Unicode.GetBytes(message);
+            EndPoint remotePoint
+                = new IPEndPoint(
+                    IPAddress.Broadcast,
+                    remotePort);
+
+            this.socket.SendTo(buffer, remotePoint);
         }
 
         internal void Listening()
@@ -71,7 +85,7 @@ namespace Chat
                     } while (socket.Available > 0);
 
                     // TODO: через Invoke добавить сообщение в окно чата.
-
+                    MessageBox.Show(builder.ToString());
                     // TODO вывод remoteIp чтоб знать от кого.
                 }
             }

@@ -29,7 +29,7 @@ namespace Chat
             if (this.IsThereAMessage())
             {
                 // TODO: отправить
-                MessageBox.Show("тест отправки");
+                chat.Send(this.textBoxMessage.Text);
             }
         }
 
