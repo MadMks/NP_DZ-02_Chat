@@ -16,6 +16,8 @@ namespace Chat
 
         private Socket socket = null;
 
+        private IPAddress localIpAddress = null;
+
         public TextBox ChatMessages { get; set; }
         public string Login { get; set; }
         
@@ -32,6 +34,8 @@ namespace Chat
                     SocketOptionLevel.Socket,
                     SocketOptionName.Broadcast,
                     1);
+
+                localIpAddress = GetLocalIpAddress();
             }
             catch (Exception ex)
             {
@@ -102,6 +106,11 @@ namespace Chat
 
                     } while (socket.Available > 0);
 
+                    // HACK под вопросом, нужно ли?
+                    //if (IsMessageFromThisAddress(remoteIp))
+                    //{
+                    //    MessageConversion(builder);
+                    //}
 
                     this.ChatMessages.Invoke(
                         new Action<string>(AddTextToChat),
@@ -119,6 +128,30 @@ namespace Chat
             }
         }
 
+        private void MessageConversion(StringBuilder builder)
+        {
+            //string message = builder.ToString();
+
+            //string temp = message.Substring(0, message.IndexOf(":"))
+            //        + " (Вы)"
+            //        + message.Substring(
+            //            message.IndexOf(":"),
+            //            message.Length - 1);
+
+            builder.Replace(":", " (Вы):");
+        }
+
+        private bool IsMessageFromThisAddress(EndPoint remoteIp)
+        {
+            if ((remoteIp as IPEndPoint).Address.ToString()
+                == localIpAddress.ToString())
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private string CreateCompleteMessage(string message)
         {
             message =
@@ -130,7 +163,7 @@ namespace Chat
 
         private void AddTextToChat(string newMessage)
         {
-            this.ChatMessages.Text 
+            this.ChatMessages.Text
                 = this.ChatMessages.Text
                 + newMessage
                 + Environment.NewLine;
