@@ -45,16 +45,21 @@ namespace Chat
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            string login = "";
             // Down -> method registrationLogin
 
-            // TODO: Спросить Логин
-            //string login = 
-            this.Text = "TODO: мой логин";
+            AskLogin askLogin = new AskLogin();
+            if (askLogin.ShowDialog() == DialogResult.OK)
+            {
+                login = askLogin.Login;
+                this.Text = login;
+            }
 
+            // Создание чата.
             chat = new Chat();
 
             chat.ChatMessages = this.textBoxChat;
-            //chat.Login = 
+            chat.Login = login;
 
             chat.Listening();
         }

@@ -12,6 +12,11 @@ namespace Chat
 {
     public partial class AskLogin : Form
     {
+        public string Login
+        {
+            get { return this.textBoxLogin.Text; }
+        }
+
         public AskLogin()
         {
             InitializeComponent();

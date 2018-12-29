@@ -18,7 +18,7 @@ namespace Chat
 
         public TextBox ChatMessages { get; set; }
         public string Login { get; set; }
-
+        
         public Chat()
         {
             try
@@ -48,7 +48,8 @@ namespace Chat
 
         internal void Send(string message)
         {
-            byte[] buffer = Encoding.Unicode.GetBytes(message);
+            byte[] buffer = Encoding.Unicode.GetBytes(
+                this.CreateCompleteMessage(message));
             EndPoint remotePoint
                 = new IPEndPoint(
                     IPAddress.Broadcast,
@@ -92,15 +93,13 @@ namespace Chat
 
                     } while (socket.Available > 0);
 
-                    string fullMessage
-                        = this.CreatingACompleteMessageLine(
-                            builder,
-                            remoteIp as IPEndPoint);
+                    //string fullMessage
+                    //    = this.CreatingACompleteMessageLine(
+                    //        builder);
 
                     this.ChatMessages.Invoke(
                         new Action<string>(AddTextToChat),
-                        fullMessage);
-                    // TODO вывод remoteIp чтоб знать от кого.
+                        builder.ToString());
                 }
             }
             catch (Exception ex)
@@ -113,11 +112,11 @@ namespace Chat
             }
         }
 
-        private string CreatingACompleteMessageLine(StringBuilder builder, IPEndPoint remoteIp)
+        private string CreateCompleteMessage(string message)
         {
-            string message =
-                remoteIp.Address + ": "
-                + builder.ToString();
+            message =
+                this.Login + ": "
+                + message;
 
             return message;
         }
