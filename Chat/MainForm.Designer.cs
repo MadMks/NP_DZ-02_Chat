@@ -51,6 +51,7 @@
             this.listBoxUsers.Name = "listBoxUsers";
             this.listBoxUsers.Size = new System.Drawing.Size(123, 108);
             this.listBoxUsers.TabIndex = 1;
+            this.listBoxUsers.TabStop = false;
             // 
             // textBoxMessage
             // 

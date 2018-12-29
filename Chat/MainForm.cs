@@ -18,10 +18,8 @@ namespace Chat
         {
             InitializeComponent();
 
-            // TODO: метод "настройка текстбокса чата"
-            this.textBoxChat.ReadOnly = true;
-            this.textBoxChat.BackColor = Color.White;
-            this.textBoxChat.ScrollBars = ScrollBars.Both;
+
+            CustomizeMessagesBox();
 
             this.Load += MainForm_Load;
             this.FormClosing += MainForm_FormClosing;
@@ -29,6 +27,13 @@ namespace Chat
             this.buttonSend.Click += ButtonSend_Click;
             this.textBoxMessage.KeyDown += TextBoxMessage_KeyDown;
             this.textBoxChat.TextChanged += TextBoxChat_TextChanged;
+        }
+
+        private void CustomizeMessagesBox()
+        {
+            this.textBoxChat.ReadOnly = true;
+            this.textBoxChat.BackColor = Color.White;
+            this.textBoxChat.ScrollBars = ScrollBars.Both;
         }
 
         private void TextBoxChat_TextChanged(object sender, EventArgs e)
