@@ -27,6 +27,17 @@ namespace Chat
         private void AskLogin_Load(object sender, EventArgs e)
         {
             this.buttonSave.Click += ButtonSave_Click;
+            this.textBoxLogin.KeyDown += TextBoxLogin_KeyDown;
+        }
+
+        private void TextBoxLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+
+                this.DialogResult = DialogResult.OK;
+            }
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)

@@ -42,6 +42,7 @@
             this.textBoxChat.Name = "textBoxChat";
             this.textBoxChat.Size = new System.Drawing.Size(286, 72);
             this.textBoxChat.TabIndex = 0;
+            this.textBoxChat.TabStop = false;
             // 
             // listBoxUsers
             // 
@@ -56,7 +57,7 @@
             this.textBoxMessage.Location = new System.Drawing.Point(13, 100);
             this.textBoxMessage.Name = "textBoxMessage";
             this.textBoxMessage.Size = new System.Drawing.Size(204, 21);
-            this.textBoxMessage.TabIndex = 2;
+            this.textBoxMessage.TabIndex = 0;
             // 
             // buttonSend
             // 
